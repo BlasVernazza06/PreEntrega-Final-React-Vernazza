@@ -1,6 +1,6 @@
 import Item from "../components/Item"
 
-const ItemList = ({productos, stock, onAdd}) => {
+const ItemList = ({productos}) => {
   return (
     <section className="Shop-Section">
       <div className="title-Shop" id="shop">
@@ -12,7 +12,7 @@ const ItemList = ({productos, stock, onAdd}) => {
       </div>
 
       <section className="grid-Products">
-          {productos.map((products) => <Item stock={stock} onAdd={onAdd} products={products} key={products.id}/>)}
+          {productos.map((products) => <Item products={products} key={products.id}/>)}
       </section>
     </section>
   )

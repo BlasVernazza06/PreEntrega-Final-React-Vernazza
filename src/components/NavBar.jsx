@@ -18,7 +18,7 @@ function NavBar() {
                     <li><NavLink to='/products/Ofertas'>Ofertas</NavLink></li>
                     <li><NavLink to='/products/mas vendidos'>Mas Vendidos</NavLink></li>
                 </ul>
-                <CartWidget counter={10}/>
+                <NavLink  className='aLink'to='/cart'><CartWidget className='widget' counter={15}/></NavLink>
             </div>
         </header>
       </>

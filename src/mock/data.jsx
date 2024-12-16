@@ -1,24 +1,8 @@
-const products =[
-    {
-        id: 1,
-        stock: 12,
-        numProducto: "Product-1",
-        imagen: "/products/Barcelona-Foto4.jpg",
-        pais: "España", 
-        nombre: "Paquete a Barcelona",
-        desde: "Mié 26 Jun", 
-        hasta: "Lun 01 Jul", 
-        origen: "BUE", 
-        destino: "BAR", 
-        precio: 880.912,
-        category: 'mas vendidos'
-    },
-
-    {
-        id: 2 , 
+export const productsDB =[
+    { 
         stock: 9, 
         numPorducto: "Product-2", 
-        imagen: "/products/LaCumbrecita-Foto2.jpg", 
+        imagen: "../../public/products/LaCumbrecita-Foto2.jpg", 
         pais: "Argentina", 
         nombre: "Paquete a Córdoba", 
         desde: "Mié 25 Sep", 
@@ -30,7 +14,6 @@ const products =[
     },
     
     {
-        id: 3 , 
         stock: 7, 
         numPorducto: "Product-3", 
         imagen: "/products/Salta.jpeg", 
@@ -44,8 +27,7 @@ const products =[
         category: 'Nuevos'
     },
 
-    {
-        id: 4 , 
+    { 
         stock: 16, 
         numPorducto: "Product-4", 
         imagen: "/products/LosAngeles-Foto3.jpg", 
@@ -59,8 +41,7 @@ const products =[
         category: 'Nuevos'
     },
 
-    /*{
-        id: 5 , 
+    { 
         stock: 1, 
         numPorducto: "Product-5", 
         imagen: "/products/Berlin-Foto5.jpg", 
@@ -74,7 +55,6 @@ const products =[
     },
     
     {
-        id: 6 , 
         stock: 1, 
         numPorducto: "Product-6", 
         imagen: "/products/Francia-Foto6.jpg", 
@@ -85,32 +65,7 @@ const products =[
         destino: "PAR", 
         hasta: "Vie 15 Dic", 
         precio: 938.321
-    }*/
+    }
 ]
 
-export const getProducts = () => {
-    let error = false
-    return new Promise((resolve, reject) => {
-        setTimeout(() =>{
-            if (error) {
-                reject("No hay productos")                
-            } else {
-                resolve(products)
-            }
-        }, 2000)
-    })
-}
 
-export const getOneProduct = (id) => {
-    let error = false
-    return new Promise((resolve, reject) => {
-        setTimeout(() =>{
-            if (error) {
-                reject("No hay productos")                
-            } else {
-                let producto = products.find((prod)=> prod.id == id)
-                resolve(producto)
-            }
-        }, 2000)
-    })
-}

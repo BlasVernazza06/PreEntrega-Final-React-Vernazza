@@ -4,6 +4,7 @@ import ItemDetailContainer from './components/ItemDetailContainer'
 import ItemListContainer from './components/ItemListContainer'
 import NavBar from './components/NavBar'
 import Checkout from './components/Checkout';
+import CartView from './components/CartView'
 import Error from './components/Error';
 import {CartProvider} from './context/CartContext';
 
@@ -14,10 +15,11 @@ function App() {
       <BrowserRouter>
         <NavBar />
           <Routes>
-            <Route path="/" element={<ItemListContainer greeting={"Planifica tu proximo viaje alrededor del "} span={"MUNDO"}/>}/>
-            <Route path="/products/:category" element={<ItemListContainer greeting={"Bienvenidos a la categoria "} span={"MUNDO"}/>}/>
+            <Route path="/" element={<ItemListContainer greeting={"Planifica tu proximo viaje alrededor del "}/>}/>
+            <Route path="/products/:category" element={<ItemListContainer greeting={"Bienvenidos a la categoria "}/>}/>
             <Route path="/item/:id" element={<ItemDetailContainer/>}/>
-            <Route path='./components/Checkout.jsx' element={<Checkout/>}/>
+            <Route path='/cart' element={<CartView/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
             <Route path="*" element={<Error/>}/>
           </Routes>
       </BrowserRouter>

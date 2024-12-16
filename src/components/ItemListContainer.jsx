@@ -1,39 +1,47 @@
 import { useEffect, useState } from "react"
 import ItemList from "./ItemList"
-import { getProducts } from "../mock/data"
 import { useParams } from "react-router-dom"
+import { collection, getDocs, query, where } from "firebase/firestore"
+import { db } from '../services/firebase.jsx'
+import Loader from "./Loader.jsx"
 
-const ItemListContainer = ({greeting, span}) => {
-    const [productos, setProductos] = useState([])
-    const [loading, setLoading] = useState(false)
-    const {category}= useParams()
-    
-    useEffect(() =>{
+const ItemListContainer = ({greeting}) => {
+    const [productos, setProductos] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [hayCat, setHayCat] = useState(""); // Cambié el nombre para mayor claridad
+    const { category } = useParams();
+
+    useEffect(() => {
+        if (category && category !== "") {
+            setHayCat(category);
+        } else {
+            setHayCat("Mundo");
+        }
+    }, [category]);
+    useEffect(() => {
         setLoading(true)
-        getProducts()
-        .then((res) =>{
-            if (category) {
-                setProductos(res.filter((prod)=> prod.category === category))
-            } else {
-                setProductos(res)
-            }
-        
+        const collectionProd = category ? query(collection(db, "productos"), where("category", "==", category)) : collection(db, "productos");
+        getDocs(collectionProd)
+        .then((res) => {
+            const list = res.docs.map((product) => {
+                return{
+                    id: product.id,
+                    ...product.data()
+                }
+            })
+            setProductos(list)
         })
-        .catch((error) => new Error(error))
-        .finally(() => setLoading(false))
+        .catch((error) => console.log(error))
+        .finally(()=>setLoading(false))
     },[category])
 
-    console.log(productos)
-
-    const onAdd = (cantidad) => {
-        console.log(`Agregaste al carrito ${cantidad} productos`)
-    }
 
     return(
         <>
             <div className="grid-StartSection">
                 <div className="StartTextSection">
-                    <h1 className="title">{greeting} <span>{span}</span></h1>
+                    <h1 className="title">{greeting}</h1>
+                    <h1 className="Second-title"><span>{hayCat}</span></h1>
                         
                     <h2 className="sub-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
                             Fugiat porro dolore enim corrupti, non rem similique veniam, officia alias 
@@ -48,11 +56,9 @@ const ItemListContainer = ({greeting, span}) => {
 
             <div id="shop-sec">
                 {loading ? 
-                    <div className="loadMessage">
-                         <p>Cargando...</p>
-                    </div> 
+                    <Loader/> 
                     : 
-                    <ItemList productos={productos} stock={12} onAdd={onAdd}/>}
+                    <ItemList productos={productos}/>}
             </div>
         </>
     )

@@ -10,14 +10,13 @@ const ItemCount = ({stock , onAdd}) => {
      }
 
      const restar = () =>{
-          if(count > 1 ){
+          if(count > 0 ){
                setCount(count - 1)
           }
      }
 
-     const onAddHandle = () => {
+     const onAddHandler = () => {
           onAdd(count)
-          setCount(1)
      }
 
 
@@ -30,7 +29,7 @@ const ItemCount = ({stock , onAdd}) => {
                     <button onClick={sumar}>+</button>
                </div>
                <div className="button-section"> 
-                    <button className="Buy-Button" onClick={onAddHandle}>Comprar</button>
+                    <button className="Buy-Button" onClick={onAddHandler}>Comprar</button>
                </div>
           </>
      )

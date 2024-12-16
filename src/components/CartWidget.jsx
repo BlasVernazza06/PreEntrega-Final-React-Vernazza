@@ -1,4 +1,5 @@
-const CartWidget = ({counter}) => {  
+
+const CartWidget = ({counter}) => { 
     return (
       <>
         <div className='cartSection'>

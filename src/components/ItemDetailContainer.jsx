@@ -3,6 +3,7 @@ import ItemDetail from './ItemDetail'
 import { useParams } from 'react-router-dom'
 import { collection, doc, getDoc } from 'firebase/firestore'
 import { db } from '../services/firebase.jsx'
+import Loader from './Loader.jsx'
 
 const ItemDetailContainer = () => {
   const [producto, setProducto] = useState({})
@@ -20,7 +21,7 @@ const ItemDetailContainer = () => {
           }))
           .catch((error) => console.log(error))
           .finally(() => setLoading(false))
-     },[]) 
+     },[id]) 
 
 //   useEffect(()=> {
 //      setLoading(true)
@@ -38,9 +39,7 @@ const ItemDetailContainer = () => {
           <>
                <div className="cardContainer">
                     {loading ? 
-                    <div className="loadMessage">
-                         <p>Cargando...</p>
-                    </div> :
+                    <Loader/> :
                     <ItemDetail producto={producto} stock={producto.stock}/>}
                </div> 
           </>
