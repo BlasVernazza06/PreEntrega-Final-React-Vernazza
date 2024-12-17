@@ -1051,19 +1051,26 @@ transition: all .5s;
 .Form-Help-Section{
   display: flex;
   justify-content: center;
-  min-height: 30dvh;
-  margin-right: 100px;
-  margin-left: 100px;
+  min-height: 40dvh;
+  margin-right: 50px;
+  margin-left: 50px;
   padding-bottom: 30px;
 }
 
 .Form-Help-Section .Card-Form{
+  display: flex;
+  flex-direction: column;
   background-color: rgb(177, 224, 248);
-  width: 30%;
-  padding: 15px 15px;
+  width: 40%;
+  padding: 15px;
   margin-top: 30px;
   border-radius: 10px;
   
+  input{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;  
+  }
 }
 
 .form-label{
