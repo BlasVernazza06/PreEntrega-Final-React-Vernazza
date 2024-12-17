@@ -1,6 +1,6 @@
 import { UseCart } from '../context/CartContext'
 import CartList from './CartList'
-import EmpyCart from './empyCart'
+import EmpyCart from './EmpyCart'
 
 const CartView = () => {
      const {cart} = UseCart()
